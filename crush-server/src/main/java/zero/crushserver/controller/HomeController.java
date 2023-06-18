@@ -33,24 +33,6 @@ public class HomeController {
     }
 
     /**
-     * Chat with GPT-3
-     * @param chatGptMessages List of ChatGptMessage
-     * @return ChatGptResponse
-     */
-    @PostMapping("/chat")
-    @ResponseBody
-    public ChatGptResponse chat(@RequestBody List<ChatGptMessage> chatGptMessages) {
-        ChatGptRequest chatGptRequest = ChatGptRequest.builder()
-                .model("gpt-3.5-turbo")
-                .messages(chatGptMessages)
-                .maxTokens(200)
-                .temperature(0.5)
-                .topP(1.0)
-                .build();
-        return chatService.getResponse(chatService.buildHttpEntity(chatGptRequest));
-    }
-
-    /**
      * Process client message and return OpenAI response
      * @param recommendRequest Cloths from the client
      * @return ChatGptResponse
@@ -71,8 +53,8 @@ public class HomeController {
                 .model("gpt-3.5-turbo")
                 .messages(chatGptMessages)
                 .maxTokens(500)
-                .temperature(0.5)
-                .topP(0.9)
+                .temperature(0.8)
+                .topP(1.0)
                 .build();
 
         ChatGptResponse chatGptResponse = chatService.getResponse(chatService.buildHttpEntity(chatGptRequest));
