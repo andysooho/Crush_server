@@ -15,6 +15,7 @@ public class ChatService {
     @Value("${chatgpt.api.key}")
     private String apiKey;
 
+
     //사전설정 메시지, 3.5-chatting API의 system_role과 유사하게 프롬프트를 구현.
     public String getSystemRoleMessage() {
         return "You are a competent fashion stylist. Look at a given set of clothes and their conditions and recommend suitable combinations in Korean. It must be appropriate for the given options."

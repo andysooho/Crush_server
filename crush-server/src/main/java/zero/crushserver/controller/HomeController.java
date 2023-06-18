@@ -21,6 +21,7 @@ public class HomeController {
     private final ChatService chatService;
     private final ChatGptMessage chatGptMessage;
     private final ObjectMapper objectMapper = new ObjectMapper();
+  
     @Autowired
     HomeController(ChatService chatService, ChatGptMessage chatGptMessage) {
         this.chatService = chatService;
