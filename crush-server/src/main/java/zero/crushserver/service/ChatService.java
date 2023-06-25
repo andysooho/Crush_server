@@ -50,7 +50,6 @@ public class ChatService {
         return getResponse(buildHttpEntity(chatGptRequest));
     }
 
-    //사전설정 메시지
     public String getSystemRoleMessage() {
         return "You are a competent fashion stylist. Look at a given set of clothes and their conditions and recommend suitable combinations in Korean. It must be appropriate for the given options."
                 + "Follow the output form unconditionally: [[\"cloth1\",\"cloth2\",\"describe Why we recommend it\"],[ \"cloth1\", \"cloth2\", \"describe Why we recommend it\"], ...]. Up to 3 combinations.";
@@ -63,10 +62,10 @@ public class ChatService {
         return new HttpEntity<>(chatRequest,headers);
     }
 
-    //private static final RestTemplate restTemplate = new RestTemplate();
+    private static final RestTemplate restTemplate = new RestTemplate();
     public ChatGptResponse getResponse(HttpEntity<ChatGptRequest> chatRequestHttpEntity) {
-        ResponseEntity<ChatGptResponse> responseEntity = new RestTemplate().postForEntity(
-                "https://api.openai.com/v1/chat/completions",
+        ResponseEntity<ChatGptResponse> responseEntity = restTemplate.postForEntity(
+                apiUrl,
                 chatRequestHttpEntity,
                 ChatGptResponse.class
         );

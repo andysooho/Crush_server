@@ -27,7 +27,8 @@ public class HomeController {
 
     @PostMapping("/recommend")
     @ResponseBody
-    public ChatGptResponse recommend(@RequestBody RecommendRequest recommendRequest) throws JsonProcessingException {
-        return chatService.getRecommendation(recommendRequest);
+    public String recommend(@RequestBody RecommendRequest recommendRequest) throws JsonProcessingException {
+        ChatGptResponse chatGptResponse = chatService.getRecommendation(recommendRequest);
+        return chatGptResponse.getChoices().get(0).getMessage().getContent();
     }
 }
